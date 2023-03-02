@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Component} from 'react';
 
-export default class TodoListClass extends Component{
+export default class TodoList extends Component{
     constructor(props){
         super(props);
         this.state = { todos: [], newId: 0};
@@ -20,10 +20,11 @@ export default class TodoListClass extends Component{
             todos: [...state.todos, newTodo],
             newId: state.newId + 1,
         }));
-
-    };
+        //clear input value
+        e.target[0].value="";
+    }
     handleClickTodo  =(index) =>{
-        const updatedTodos = JSON.parse(JSON.stringfy(todos));
+        const updatedTodos = JSON.parse(JSON.stringfy(this.state.todos));
         updatedTodos[index].done = !updatedTodos[index].done;
         this.setState((state) => ({
             ...state,
@@ -37,21 +38,21 @@ export default class TodoListClass extends Component{
                         <h2>
                             Todo List
                         </h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={this.handleSubmit}>
                             <input type="text" name="todo"/>
                             <button type="submit">Add</button>
                         </form>
-                        {todos.map((todo, idx) => (
+                        {this.state.todos.map((todo, idx) => (
                             <div 
                                 key={todo.id} 
-                                onClick={() => handleClickTodo(idx)}
+                                onClick={() => this.handleClickTodo(idx)}
                                 className={classNames({ done: todo.done})}>
                                 {todo.label}
                             </div>    
                         ))}
                     </div>
                     <style>{`
-                        .is-done {
+                        .done {
                             text-decoration: line-through;
                         }
                     `}</style>
