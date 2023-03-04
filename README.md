@@ -1,6 +1,5 @@
-# Getting Started with Create React App
+# To Do list Using React 16, component and classnames
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
